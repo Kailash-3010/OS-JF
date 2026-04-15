@@ -6,7 +6,7 @@
 | Name | SRN | Section |
 |---|---|---|
 | Manoj PS | PES1UG24CS265 | E |
-| [Teammate Name] | [Teammate SRN] | E |
+| Manish Bala| PES1UG24CS265 | E |
 
 ---
 
@@ -187,87 +187,12 @@ ps aux | grep -v grep | grep defunct
 
 ## 2. Demo with Screenshots
 
-> **Note:** Replace each `[SCREENSHOT N]` placeholder with an annotated terminal screenshot taken on your Ubuntu VM.
+<img width="912" height="273" alt="Screenshot 2026-04-15 172158" src="https://github.com/user-attachments/assets/679f9b3d-3235-4e8d-ac92-bc69dcbef79e" />
+<img width="966" height="193" alt="Screenshot 2026-04-15 165446" src="https://github.com/user-attachments/assets/c1e6f97f-ff2d-4baa-91f1-f3b033d0fcfe" />
+<img width="1121" height="67" alt="Screenshot 2026-04-15 165924" src="https://github.com/user-attachments/assets/59ba7f1f-70c5-4091-8cff-782603bef30b" />
+<img width="691" height="89" alt="Screenshot 2026-04-15 165645" src="https://github.com/user-attachments/assets/f3fd3547-1454-40fd-80d7-d55e26306e68" />
+<img width="650" height="257" alt="Screenshot 2026-04-15 165618" src="https://github.com/user-attachments/assets/29385c13-a3f1-4848-b4e9-46d654a6a10d" />
 
-### Screenshot 1 — Multi-container supervision
-
-> **Caption:** Two containers (`alpha`, `beta`) running simultaneously under a single supervisor process. The supervisor terminal shows clone() success messages for both PIDs.
-
-```
-[SCREENSHOT 1]
-```
-
----
-
-### Screenshot 2 — Metadata tracking (`ps`)
-
-> **Caption:** Output of `sudo ./engine ps` showing container IDs, host PIDs, states, memory limits, and start times for all tracked containers.
-
-```
-[SCREENSHOT 2]
-```
-
----
-
-### Screenshot 3 — Bounded-buffer logging
-
-> **Caption:** Contents of `logs/alpha.log` captured through the pipe → producer → bounded buffer → consumer → log file pipeline. Terminal shows the log file filling in real time with `cpu_hog` progress lines.
-
-```
-[SCREENSHOT 3]
-```
-
----
-
-### Screenshot 4 — CLI and IPC
-
-> **Caption:** `engine stop alpha` command sent over the UNIX socket. The supervisor terminal confirms receipt and the container's state transitions to `stopped`.
-
-```
-[SCREENSHOT 4]
-```
-
----
-
-### Screenshot 5 — Soft-limit warning
-
-> **Caption:** `dmesg` output showing `[container_monitor] SOFT LIMIT container=memtest pid=... rss=... limit=...` after the container's RSS exceeded the 20 MiB soft threshold.
-
-```
-[SCREENSHOT 5]
-```
-
----
-
-### Screenshot 6 — Hard-limit enforcement
-
-> **Caption:** `dmesg` output showing the HARD LIMIT SIGKILL event. `engine ps` then shows the container in `killed` state, distinguishing it from a voluntary stop.
-
-```
-[SCREENSHOT 6]
-```
-
----
-
-### Screenshot 7 — Scheduling experiment
-
-> **Caption:** Side-by-side timing of two `cpu_hog 30` containers: `hi` (nice -10) completing ~1.5× faster than `lo` (nice +10) due to higher CFS weight. Raw data in Section 5.
-
-```
-[SCREENSHOT 7]
-```
-
----
-
-### Screenshot 8 — Clean teardown
-
-> **Caption:** After sending SIGINT to the supervisor, all containers are reaped, producer and logger threads join, and `ps aux | grep defunct` returns nothing. The supervisor prints "shutdown complete — no zombies".
-
-```
-[SCREENSHOT 8]
-```
-
----
 
 ## 3. Engineering Analysis
 
